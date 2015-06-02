@@ -27,16 +27,19 @@
             }
         });*/
 
+        sessionStorage.clear();
+        localStorage.clear();
+
         $.ajax({
             type: "GET",
             dataType: "jsonp",
             cache: false,
             url: "https://api.instagram.com/v1/users/215951651/followed-by?access_token=806401368.5aa13be.4a08df065cbb41469c9cc20041432d3b",
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 for (var i = 0; i < data.data.length; i++) {
                     $(".following").append("<li>" + data.data[i].id + "</li>");
-                    localStorage.setItem(data.data[i].id, 1+(localStorage.getItem(data.data[i].id)*1) );
+                    sessionStorage.setItem(data.data[i].id, 1+(sessionStorage.getItem(data.data[i].id)*1) );
                 }
             }
         });
@@ -47,38 +50,89 @@
             cache: false,
             url: "https://api.instagram.com/v1/users/215951651/follows?access_token=806401368.5aa13be.4a08df065cbb41469c9cc20041432d3b",
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 for (var i = 0; i < data.data.length; i++) {
                     $(".follows").append("<li>" + data.data[i].id + "</li>");
-                    localStorage.setItem(data.data[i].id, 1+(localStorage.getItem(data.data[i].id)*1) );
+                    sessionStorage.setItem(data.data[i].id, 1+(sessionStorage.getItem(data.data[i].id)*1) );
 
-                    if (localStorage.getItem(data.data[i].id) == 2){
+                    if (sessionStorage.getItem(data.data[i].id) == 2){
                         $(".f4f").append("<li>" + data.data[i].id + "</li>");
+                        localStorage.setItem(data.data[i].id, 1+(localStorage.getItem(data.data[i].id)*1) );
                     }
                 }
             }
         });
 
-        function removeOnes(){
+        function possibles(){
+            var dataId = "0";
+            sessionStorage.clear();
+            console.log(localStorage.length);
+
             for (var i = 0; i < localStorage.length; i++){
-                console.log(localStorage.key(i))
+
+                console.log(i + "------------------------------");
+
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "jsonp",
+                    cache: false,
+                    url: "https://api.instagram.com/v1/users/" + localStorage.key(i) +"/follows?access_token=806401368.5aa13be.4a08df065cbb41469c9cc20041432d3b",
+                    success: function(data) {
+                        try {
+                            console.log("Success --------------------------");
+                        }catch(e){
+                            console.log("ERROR: " + e);
+                        }
+
+                        try{
+                            for (var a = 0; a < data.data.length; a++){
+                                //console.log(data.data[a].username);
+                                sessionStorage.setItem(data.data[a].id, 1+(sessionStorage.getItem(data.data[a].id)*1) );
+                            }
+                        }catch(e){
+
+                        }
+
+                    }
+                });
+            }
+        }
+
+        function removeOnes(){
+            for (var rep = 0; rep < 3; rep++){
+                for (var a = 0; a < sessionStorage.length; a++){
+                    var onStorageItem;
+                    onStorageItem = sessionStorage.key(a);
+
+                    if (sessionStorage.getItem(onStorageItem) == 1){
+                        sessionStorage.removeItem(onStorageItem);
+                    }
+                }
+            }
+
+            showPossibles();
+        }
+
+        function showPossibles(){
+            for (var a = 0; a < sessionStorage.length; a++){
+                var onStorageItem;
+                onStorageItem = sessionStorage.key(a);
+
+                $(".pos").append("<li>" + onStorageItem + "</li>");
             }
         }
     </script>
 </head>
 <body>
-    <button onclick="removeOnes();">CLEAR</button>
+    <button onclick="possibles();">Make possibles</button>
+    <button onclick="removeOnes();">Clear Ones</button>
 
-    <h1>Popular Pictures</h1>
-    <ul class="popular">
-    </ul>
-    <h1>Latest</h1>
-    <span class="name"></span>
-    <span class=tagline></span>
     <ul class="latest">
     </ul>
 
 
+    <h1>Follows</h1>
     <ul class="follows">
     </ul>
 
