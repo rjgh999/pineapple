@@ -4,26 +4,72 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="style/site.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="js/possibleMaker.js"></script>
+    <script src="js/site.js"></script>
 </head>
 <body>
-    <div class="header">meetr</div>
+    <div id="header" class="header">
+        <div class="iosStatusBar"></div>
+        meetr
+        <button id="myBtn">Reload</button>
+        <button id="clearStorage">Reload</button>
+    </div>
+
+
+    <div class="wrapper">
+        <div class="scrolls">
+            <table width="400%">
+                <tr>
+                    <td width="25%">
+                        <div id="msm" class="content">asdf</div>
+                    </td>
+
+                    <td width="25%">
+                        <div id="rate" class="content">
+                            <img id="new" src="#">
+                            <div id="newU" class="button">Start</div>
+                        </div>
+                    </td>
+
+                    <td width="25%">
+                        <div id="vs" class="content">asdf</div>
+                    </td>
+
+                    <td width="25%">
+                        <div id="me" class="content">
+                            <ul id="poss">
+                                <li>PSS</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
     <div class="footer">
         <table width="100%">
             <tr>
-                <td>
+                <td scrollTo="0" class="footer-item selected scroll">
                     <img width="40px" src="img/sms.svg">
                     <div>Messages</div>
                 </td>
-                <td class="selected">
+                <td id="decision" scrollTo="1" class="footer-item scroll">
                     <img width="40px" src="img/decision.svg">
                     <div>Rate</div>
                 </td>
-                <td>
+                <td scrollTo="2" class="footer-item scroll">
                     <img width="40px" src="img/collaboration.svg">
                     <div>Versus</div>
                 </td>
-                <td>
+                <td scrollTo="3" class="footer-item scroll">
                     <img width="40px" src="img/businesswoman.svg">
                     <div>Me</div>
                 </td>

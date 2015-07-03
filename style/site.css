@@ -2,24 +2,39 @@
     font-family: GothamNarrow;
     src: url(GothamNarrow-Thin.otf);
 }
+body, html{
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.content{
+    padding-top: 25px;
+    width: 100%;
+    height: 100%;
+    float: left !important;
+    display: inline-block !important;
+}
 
 body{
     padding: 0;
-    margin: 0;
+    margin-top: 75px;
+    margin-left: auto;
     border: 0;
     font-family: GothamNarrow;
     background-color: #F5F5F5;
 }
 .header{
-    background-color: #FF9800;
+    background-color: #F44336;
     width: 100%;
-    height: 50px;
+    height: 75px;
     position: fixed;
     left: 0;
     top: 0;
     text-align: center;
     color: white;
     font-size: 40px;
+    box-shadow: 0 5px 10px 2px rgba(0,0,0,.13);
 }
 .footer{
     background-color: white;
@@ -31,9 +46,47 @@ body{
     text-align: center;
     color: black;
     font-size: 16px;
-    box-shadow: 0 -5px 12px 5px rgba(0,0,0,.1);
+    box-shadow: 0 -5px 10px 2px rgba(0,0,0,.13);
+}
+.iosStatusBar{
+    background-color: #D32F2F;
+    width: 100%;
+    height: 20px;
 }
 .selected{
     background-color: #E0E0E0;
     border-radius: 5px;
+}
+
+
+
+
+
+.wrapper {
+    background:#EFEFEF;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+.scrolls {
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space:nowrap;
+}
+.scrolls table{
+    height: 100%;
+}
+
+.button{
+    border-radius: 5px;
+    background-color: #0277BD;
+    color: white;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: 900;
 }
