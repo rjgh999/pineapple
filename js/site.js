@@ -87,3 +87,10 @@ $(document).on('touchstart click', '#clearStorage', function(event){
 });
 
 document.ontouchstart = function(e){ e.preventDefault(); };
+
+
+
+
+function addControl(){
+    document.getElementById("COMPLETED").value = quiz.right;
+}
